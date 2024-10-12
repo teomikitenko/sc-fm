@@ -8,7 +8,7 @@ function App() {
   //const [count, setCount] = useState(0);
   const getPlaylists = async () => {
     fetch(
-      "https://secure.soundcloud.com/authorize?client_id=5xP6vJj22M5hgD6GIEsszTFtbPJsU4zY&redirect_uri=http://localhost:5173",
+      "https://secure.soundcloud.com/authorize?client_id=5xP6vJj22M5hgD6GIEsszTFtbPJsU4zY&redirect_uri=https://sparkling-tiramisu-2b58ea.netlify.app/",
       {
         method: "GET",
         headers: {
