@@ -15,7 +15,7 @@ function Main() {
 
   const getTrack = async (track_id: string) => {
     const trackReq = await fetch(
-      `https://sc-server-seven.vercel.app/track?track_id=${track_id}`
+      `${import.meta.env.VITE_SC_URL}/track?track_id=${track_id}`
     );
     const trackUrl: StreamUrls = await trackReq.json();
     setCurrentUrl(trackUrl);
@@ -23,7 +23,7 @@ function Main() {
   const getPlaylist = async (playlist_id: string) => {
     setTrackIndex(0);
     const playListReq = await fetch(
-      `https://sc-server-seven.vercel.app/playlist?playlist_id=${playlist_id}`
+      `${import.meta.env.VITE_SC_URL}/playlist?playlist_id=${playlist_id}`
     );
     const playList: TrackList = await playListReq.json();
     setPlaylist(playList);
@@ -67,8 +67,8 @@ function Main() {
   };
 
   return (
-    <div className="flex flex-col bg-foreground min-h-screen relative z-10">
-      <div className="pt-14 pb-6 px-6 flex-auto">
+    <div className="flex flex-col bg-foreground min-h-screen min-w-[460px]">
+      <div className="pt-14 pb-6 px-6 flex-auto relative z-30">
         <ul className="grid grid-cols-3 gap-5 grid-rows-3">
           {PLAYLISTS.map((p) => (
             <li key={p.id}>
@@ -88,7 +88,7 @@ function Main() {
         ></audio>
       </div>
       <canvas
-        className="fixed z-0 bottom-20 w-full h-56 opacity-55"
+        className="fixed z-10 bottom-16 sm:bottom-20 w-full h-56 opacity-55"
         ref={canvasRef}
       ></canvas>
       {audioRef && (

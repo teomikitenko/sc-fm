@@ -13,7 +13,7 @@ const PLAYLISTS = [
   { id: "1551533578", title: "Soft House/Chill House" },
   { id: "751456812", title: "Lo-fi Hip Hop" },
   { id: "1554953980", title: "Deep House" },
-  { id: "1577089075", title: "EDM" },
+  { id: "843427727", title: "EDM" },
   { id: "1469428909", title: "Embient" },
 ];
 export { PLAYLISTS };
