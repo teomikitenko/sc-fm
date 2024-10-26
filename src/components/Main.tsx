@@ -15,7 +15,7 @@ function Main() {
 
   const getTrack = async (track_id: string) => {
     const trackReq = await fetch(
-      `https://sc-server-seven.vercel.app//track?track_id=${track_id}`
+      `https://sc-server-seven.vercel.app/track?track_id=${track_id}`
     );
     const trackUrl: StreamUrls = await trackReq.json();
     setCurrentUrl(trackUrl);
@@ -23,7 +23,7 @@ function Main() {
   const getPlaylist = async (playlist_id: string) => {
     setTrackIndex(0);
     const playListReq = await fetch(
-      `https://sc-server-seven.vercel.app//playlist?playlist_id=${playlist_id}`
+      `https://sc-server-seven.vercel.app/playlist?playlist_id=${playlist_id}`
     );
     const playList: TrackList = await playListReq.json();
     setPlaylist(playList);
