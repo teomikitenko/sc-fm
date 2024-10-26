@@ -67,7 +67,7 @@ function Main() {
   };
 
   return (
-    <div className="flex flex-col bg-foreground min-h-screen min-w-[460px]">
+    <div className="flex flex-col bg-foreground min-h-screen min-w-[450px]">
       <div className="pt-14 pb-6 px-6 flex-auto relative z-30">
         <ul className="grid grid-cols-3 gap-5 grid-rows-3">
           {PLAYLISTS.map((p) => (
