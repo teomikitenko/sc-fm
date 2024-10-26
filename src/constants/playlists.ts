@@ -3,6 +3,7 @@ const PLAYLISTS = [
   { id: "1731755832", title: "Sad Vibes" },
   { id: "1636238851", title: "Sleepy Vibes" },
   { id: "1271948866", title: "Work/Study" },
+  { id: "223448541", title: "Future Bass" },
 
   { id: "1619418586", title: "Melodic Dubstep" },
   { id: "1716812874", title: "Dubstep" },
