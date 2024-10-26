@@ -9,33 +9,55 @@ const Player = ({
   audioRef: React.MutableRefObject<HTMLAudioElement>;
   name: string;
 }) => {
-  const [currentDuration, setCurrentDuration] = useState<string>("00:00");
-  useEffect(() => {
-    if (audioRef) {
-      audioRef.current.addEventListener("timeupdate", () => {
-        const date = new Date(0);
-        date.setSeconds(audioRef.current.currentTime);
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        setCurrentDuration(
-          `${minutes.toString().padStart(2, "0")}:${seconds
-            .toString()
-            .padStart(2, "0")}`
-        );
-      });
-    }
-  }, [audioRef]);
+  const [volume, setVolume] = useState(0.5);
+
+
+  const pauseHandler = () => {
+    audioRef.current.pause();
+  };
+  const share = () => {
+    // зробити логіку щоб можна було шерити ссилку на апку але з конкретним id плейлиста
+    navigator.share();
+  };
+
+  const playHandler = () => {
+    audioRef.current.play();
+  };
+  const volumeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+  e.preventDefault()
+  setVolume(Number(e.currentTarget.value))
+  audioRef.current.volume = Number(e.currentTarget.value)
+  };
 
   return (
-    <div className="border-t border-secondary px-8 py-6 flex gap-16">
-      <div>
-        <p className="text-secondary">{name}</p>
-        <p className="text-secondary">{currentDuration}</p>
+    <div className="px-10 py-6 flex gap-16">
+      <div className="flex w-full justify-between">
+      <div className="flex gap-5">
+        <Play
+          onClick={playHandler}
+          size={33}
+          className="fill-primary"
+          strokeWidth={0}
+        />
+        <Pause
+          onClick={pauseHandler}
+          size={33}
+          className="fill-primary"
+          strokeWidth={0}
+        />
+         <p className="text-secondary font-semibold flex items-center">{name}</p>
       </div>
+      <input
+          onChange={volumeHandler}
+          className="appearance-none"
+          type="range"
+          name="volumecontrol"
+          min={0}
+          max={1}
+          step={0.1}
+          value={volume}
+        />
 
-      <div className="flex gap-3">
-        <Play size={33} className="fill-primary" />
-        <Pause size={33} className="fill-primary" />
       </div>
     </div>
   );

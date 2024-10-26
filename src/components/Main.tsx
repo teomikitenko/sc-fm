@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import type { Track, TrackList, StreamUrls } from "../../types/types";
 import { PLAYLISTS } from "../constants/playlists";
+import useVisualAudio from "../hooks/useVisualAudio";
 import Player from "./Player";
 
 function Main() {
@@ -9,17 +10,20 @@ function Main() {
   const [currentUrl, setCurrentUrl] = useState<StreamUrls | undefined>();
   const [currentDuration, setCurrentDuration] = useState<string>();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  useVisualAudio(audioRef.current, canvasRef.current);
 
   const getTrack = async (track_id: string) => {
     const trackReq = await fetch(
-      `https://sc-server-seven.vercel.app/track?track_id=${track_id}`
+      `https://sc-server-seven.vercel.app//track?track_id=${track_id}`
     );
     const trackUrl: StreamUrls = await trackReq.json();
     setCurrentUrl(trackUrl);
   };
   const getPlaylist = async (playlist_id: string) => {
+    setTrackIndex(0);
     const playListReq = await fetch(
-      `https://sc-server-seven.vercel.app/playlist?playlist_id=${playlist_id}`
+      `https://sc-server-seven.vercel.app//playlist?playlist_id=${playlist_id}`
     );
     const playList: TrackList = await playListReq.json();
     setPlaylist(playList);
@@ -28,20 +32,10 @@ function Main() {
   useEffect(() => {
     if (currentUrl && audioRef) {
       audioRef.current!.play();
+      audioRef.current.volume = 0.5;
       audioRef.current.addEventListener("ended", () => {
         setTrackIndex((i) => i + 1);
       });
-      /*    audioRef.current.addEventListener("timeupdate", () => {
-        const date = new Date(0);
-        date.setSeconds(audioRef.current.currentTime);
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-        setCurrentDuration(
-          `${minutes.toString().padStart(2, "0")}:${seconds
-            .toString()
-            .padStart(2, "0")}`
-        );
-      }); */
     }
   }, [currentUrl, audioRef]);
 
@@ -52,18 +46,6 @@ function Main() {
     }
   }, [playList, trackIndex]);
 
-  const share = () => {
-    // зробити логіку щоб можна було шерити ссилку на апку але з конкретним id плейлиста
-    navigator.share();
-  };
-
-  const pauseHandler = () => {
-    audioRef.current.pause();
-  };
-
-  const playHandler = () => {
-    audioRef.current.play();
-  };
   const totalTrackDuration = () => {
     const duration = playList.tracks[trackIndex].duration;
     const date = new Date(0);
@@ -85,8 +67,8 @@ function Main() {
   };
 
   return (
-    <div className="flex flex-col bg-foreground min-h-screen">
-      <div className="pt-14 pb-6 px-6 grow">
+    <div className="flex flex-col bg-foreground min-h-screen relative z-10">
+      <div className="pt-14 pb-6 px-6 flex-auto">
         <ul className="grid grid-cols-3 gap-5 grid-rows-3">
           {PLAYLISTS.map((p) => (
             <li key={p.id}>
@@ -98,14 +80,21 @@ function Main() {
             </li>
           ))}
         </ul>
-        <button>Share</button>
 
-        <audio ref={audioRef} src={currentUrl?.http_mp3_128_url}></audio>
+        <audio
+          ref={audioRef}
+          crossOrigin="anonymous"
+          src={currentUrl?.http_mp3_128_url}
+        ></audio>
       </div>
+      <canvas
+        className="fixed z-0 bottom-20 w-full h-56 opacity-55"
+        ref={canvasRef}
+      ></canvas>
       {audioRef && (
         <Player
           audioRef={audioRef}
-          name={ playList ? playList.tracks[trackIndex].label_name : ' '}
+          name={playList ? playList.tracks[trackIndex].title : " "}
         />
       )}
     </div>
