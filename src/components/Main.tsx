@@ -8,22 +8,22 @@ function Main() {
   const [playList, setPlaylist] = useState<TrackList | undefined>(undefined);
   const [trackIndex, setTrackIndex] = useState(0);
   const [currentUrl, setCurrentUrl] = useState<StreamUrls | undefined>();
-  const [currentDuration, setCurrentDuration] = useState<string>();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const serverUrl = import.meta.env.DEV
+    ? "http://localhost:3000"
+    : "https://sc-server-seven.vercel.app";
   useVisualAudio(audioRef.current, canvasRef.current);
 
   const getTrack = async (track_id: string) => {
-    const trackReq = await fetch(
-      `https://sc-server-seven.vercel.app/track?track_id=${track_id}`
-    );
+    const trackReq = await fetch(`${serverUrl}/track?track_id=${track_id}`);
     const trackUrl: StreamUrls = await trackReq.json();
     setCurrentUrl(trackUrl);
   };
   const getPlaylist = async (playlist_id: string) => {
     setTrackIndex(0);
     const playListReq = await fetch(
-      `https://sc-server-seven.vercel.app/playlist?playlist_id=${playlist_id}`
+      `${serverUrl}/playlist?playlist_id=${playlist_id}`
     );
     const playList: TrackList = await playListReq.json();
     setPlaylist(playList);
@@ -56,25 +56,17 @@ function Main() {
 
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
-
-  const formatDuration = (duration: number) => {
-    const date = new Date(0);
-    date.setMilliseconds(duration);
-    const minutes = date.getUTCMinutes();
-    const seconds = date.getUTCSeconds();
-
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
-
   return (
-    <div className="flex flex-col bg-foreground min-h-screen">
+    <div className="flex flex-col bg-foreground min-h-screen min-w-[300px]:min-w-[300px]">
       <div className="pt-14 pb-6 px-6 flex-auto relative z-30">
-        <ul className="grid grid-cols-3 gap-5 grid-rows-3">
+        <ul className="grid grid-cols-2 gap-4  sm:grid-cols-3 sm:gap-5 sm:grid-rows-3">
           {PLAYLISTS.map((p) => (
             <li key={p.id}>
               <div className="flex flex-col">
                 <button onClick={async () => await getPlaylist(p.id)}>
-                  <p className="text-secondary font-semibold">{p.title}</p>
+                  <p className="text-secondary font-semibold hover:text-primary">
+                    {p.title}
+                  </p>
                 </button>
               </div>
             </li>
@@ -88,11 +80,13 @@ function Main() {
         ></audio>
       </div>
       <canvas
-        className="fixed z-10 bottom-16 sm:bottom-20 w-full h-56 opacity-55"
+        className="absolute z-10 bottom-16 sm:bottom-20 w-full h-56 opacity-55"
         ref={canvasRef}
       ></canvas>
       {audioRef && (
         <Player
+          playlistLength={playList ? playList.tracks.length : 0}
+          setTrackIndex={setTrackIndex}
           audioRef={audioRef}
           name={playList ? playList.tracks[trackIndex].title : " "}
         />

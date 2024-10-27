@@ -5,22 +5,16 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
-
-/* Handle */
-#thumb::-webkit-scrollbar-thumb {
-  background: gray;
-  height: 20px;
-  border-radius: 5px;
-}
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
   cursor: pointer;
-  width: 5rem;
 }
+
 /***** Track Styles *****/
 /***** Chrome, Safari, Opera, and Edge Chromium *****/
 input[type="range"]::-webkit-slider-runnable-track {
@@ -38,14 +32,22 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   margin-top: -6px;
   background-color: white;
-  border: 1px solid black;
   height: 0.9rem;
   width: 0.9rem;
   border-radius: 100%;
 }
 
-
-
+@media (width <= 650px) {
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -4px;
+    background-color: white;
+    height: 0.7rem;
+    width: 0.7rem;
+    border-radius: 100%;
+  }
+}
 
 @layer base {
   :root {
@@ -103,7 +105,3 @@ input[type="range"]::-webkit-slider-thumb {
     --chart-5: 340 75% 55%;
   }
 }
-
-
-
-
