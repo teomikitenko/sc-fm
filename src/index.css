@@ -41,10 +41,10 @@ input[type="range"]::-webkit-slider-thumb {
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    margin-top: -4px;
+    margin-top: -5px;
     background-color: white;
-    height: 0.7rem;
-    width: 0.7rem;
+    height: 0.8rem;
+    width: 0.8rem;
     border-radius: 100%;
   }
 }

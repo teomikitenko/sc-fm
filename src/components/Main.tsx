@@ -59,7 +59,7 @@ function Main() {
   return (
     <div className="flex flex-col bg-foreground min-h-screen min-w-[300px]:min-w-[300px]">
       <div className="pt-14 pb-6 px-6 flex-auto relative z-30">
-        <ul className="grid grid-cols-2 gap-4  sm:grid-cols-3 sm:gap-5 sm:grid-rows-3">
+        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 sm:grid-rows-3">
           {PLAYLISTS.map((p) => (
             <li key={p.id}>
               <div className="flex flex-col">
@@ -78,6 +78,7 @@ function Main() {
           crossOrigin="anonymous"
           src={currentUrl?.http_mp3_128_url}
         ></audio>
+        <div><p className="text-secondary">Time</p></div>
       </div>
       <canvas
         className="absolute z-10 bottom-16 sm:bottom-20 w-full h-56 opacity-55"

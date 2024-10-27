@@ -19,7 +19,7 @@ const Player = ({
   const [paused, setPaused] = useState(false);
   const pauseHandler = () => {
     audioRef.current.pause();
-    setPaused(true);
+    //setPaused(true);
   };
   const share = () => {
     // зробити логіку щоб можна було шерити ссилку на апку але з конкретним id плейлиста
@@ -28,7 +28,7 @@ const Player = ({
 
   const playHandler = () => {
     audioRef.current.play();
-    setPaused(false);
+   // setPaused(false);
   };
   const shuffleHandler = () => {
     const index = Math.floor(Math.random() * playlistLength);
@@ -51,14 +51,14 @@ const Player = ({
         <div className="flex gap-5">
           <Play
             onClick={playHandler}
-            className={`fill-primary  min-w-8 sm:w-8 sm:h-8 cursor-pointer  hover:fill-primary ${
+            className={`fill-primary  min-w-7 min-h-7 sm:w-8 sm:h-8 cursor-pointer  hover:fill-primary ${
               !paused && "opacity-60"
             } hover:opacity-70`}
             strokeWidth={0}
           />
           <Pause
             onClick={pauseHandler}
-            className={`fill-primary min-w-8 sm:w-8 sm:h-8 cursor-pointer ${
+            className={`fill-primary  min-w-7 min-h-7 sm:w-8 sm:h-8 cursor-pointer ${
               paused && "opacity-60"
             }   hover:fill-primary hover:opacity-70`}
             strokeWidth={0}
@@ -84,7 +84,7 @@ const Player = ({
         <div className="flex gap-6">
           <Shuffle
             onClick={shuffleHandler}
-            className="fill-primary min-w-8 sm:w-8 sm:h-8 cursor-pointer hover:fill-primary hover:opacity-70"
+            className="fill-primary min-w-7 min-h-7 sm:w-8 sm:h-8 cursor-pointer hover:fill-primary hover:opacity-70"
             strokeWidth={0}
           />
           <input
