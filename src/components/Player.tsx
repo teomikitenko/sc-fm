@@ -21,6 +21,8 @@ const Player = ({
     audioRef.current.pause();
     //setPaused(true);
   };
+
+
   const share = () => {
     // зробити логіку щоб можна було шерити ссилку на апку але з конкретним id плейлиста
     navigator.share();

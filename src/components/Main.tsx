@@ -8,6 +8,8 @@ function Main() {
   const [playList, setPlaylist] = useState<TrackList | undefined>(undefined);
   const [trackIndex, setTrackIndex] = useState(0);
   const [currentUrl, setCurrentUrl] = useState<StreamUrls | undefined>();
+  const [duration, setDuration] = useState('00:00')
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const serverUrl = import.meta.env.DEV
@@ -36,6 +38,14 @@ function Main() {
       audioRef.current.addEventListener("ended", () => {
         setTrackIndex((i) => i + 1);
       });
+      audioRef.current.addEventListener('timeupdate',()=>{
+        const date = new Date(0)
+       date.setSeconds(audioRef.current.duration)
+        const minutes = date.getMinutes()
+        const seconds = date.getSeconds()
+        const valideTime = `${minutes.toString().padStart(2,'0')}:${seconds}`
+        setDuration(valideTime)
+      })
     }
   }, [currentUrl, audioRef]);
 
@@ -78,7 +88,7 @@ function Main() {
           crossOrigin="anonymous"
           src={currentUrl?.http_mp3_128_url}
         ></audio>
-        <div><p className="text-secondary">Time</p></div>
+        <div><p className="text-secondary">{duration && duration}</p></div>
       </div>
       <canvas
         className="absolute z-10 bottom-16 sm:bottom-20 w-full h-56 opacity-55"
