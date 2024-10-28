@@ -71,7 +71,7 @@ function Main() {
           album: tracks[trackIndex].label_name,
           artwork: [
             {
-              src: tracks[trackIndex].artwork_url,
+              src: "https://img.freepik.com/free-photo/photorealistic-rainbow-with-countryside-nature-landscape_23-2151597638.jpg" /* tracks[trackIndex].artwork_url */,
               sizes: "512x512",
               type:'image/jpeg'
             },
