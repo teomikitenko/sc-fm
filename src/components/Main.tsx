@@ -31,32 +31,39 @@ function Main() {
     const playList: TrackList = await playListReq.json();
     setPlaylist(playList);
   };
+  const handleEndTrack = () => {
+    setTrackIndex((i) => i + 1);
+  };
+  const addTotalTime = () => {
+    const totalTime = formatTime(audioRef.current.duration);
+    setTotalTime(totalTime);
+  };
+  const handleTimeUpdate = () => {
+    setCurrentTime(currentTime);
+    if (
+      "mediaSession" in navigator && //testing new api
+      navigator.mediaSession.setPositionState
+    ) {
+      navigator.mediaSession.setPositionState({
+        duration: audioRef.current.duration,
+        position: audioRef.current.currentTime,
+      });
+    }
+  };
 
   useEffect(() => {
     if (currentUrl && audioRef) {
       audioRef.current!.play();
       audioRef.current.volume = 0.5;
-      audioRef.current.addEventListener("ended", () => {
-        setTrackIndex((i) => i + 1);
-      });
-      audioRef.current.addEventListener("canplay", () => {
-        const totalTime = formatTime(audioRef.current.duration);
-        setTotalTime(totalTime);
-      });
-      audioRef.current.addEventListener("timeupdate", () => {
-        const currentTime = formatTime(audioRef.current.currentTime);
-        if (
-          "mediaSession" in navigator &&
-          navigator.mediaSession.setPositionState
-        ) {
-          navigator.mediaSession.setPositionState({
-            duration: audioRef.current.duration,
-            position:audioRef.current.currentTime
-          });
-        }
-        setCurrentTime(currentTime);
-      });
+      audioRef.current.addEventListener("ended", handleEndTrack);
+      audioRef.current.addEventListener("canplay", addTotalTime);
+      audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
     }
+    return () => {
+      audioRef.current.removeEventListener("ended", handleEndTrack);
+      audioRef.current.removeEventListener("canplay", addTotalTime);
+      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+    };
   }, [currentUrl, audioRef]);
 
   useEffect(() => {
@@ -66,8 +73,8 @@ function Main() {
       if ("mediaSession" in navigator && playList) {
         //experem api
         navigator.mediaSession.metadata = new MediaMetadata({
-          title: tracks[trackIndex].title.split("-")[0],
-          artist: tracks[trackIndex].title.split("-")[1],
+          title: tracks[trackIndex].title.split("-")[1],
+          artist: tracks[trackIndex].title.split("-")[0],
         });
       }
     }
