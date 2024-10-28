@@ -64,19 +64,20 @@ function Main() {
 
       getTrack(tracks[trackIndex].id.toString());
       if ("mediaSession" in navigator && playList) {
-        //experem api
-
+   
         navigator.mediaSession.metadata = new MediaMetadata({
           title: tracks[trackIndex].title.split("-")[1],
           artist: tracks[trackIndex].title.split("-")[0],
           album: tracks[trackIndex].label_name,
           artwork: [
             {
-              src: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8403d9fc993b2118944770e1ba",
+              src:tracks[trackIndex].artwork_url,
+              type:'image/jpg',
             },
           ],
         });
       }
+      console.log(navigator.mediaSession.metadata)
     }
   }, [playList, trackIndex]);
 
