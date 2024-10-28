@@ -55,6 +55,11 @@ function Main() {
     if (playList && trackIndex >= 0) {
       const tracks = playList.tracks;
       getTrack(tracks[trackIndex].id.toString());
+      if ("mediaSession" in navigator && playList) {    //experem api
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: tracks[trackIndex].title,
+        });
+      }
     }
   }, [playList, trackIndex]);
 
