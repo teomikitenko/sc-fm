@@ -35,7 +35,6 @@ export default defineConfig({
           },
         ],
       },
-      selfDestroying:true,
       registerType: "autoUpdate",
       devOptions: {
         enabled: true,
