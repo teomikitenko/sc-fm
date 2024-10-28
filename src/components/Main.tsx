@@ -70,50 +70,8 @@ function Main() {
           album: tracks[trackIndex].label_name,
           artwork: [
             {
-              src: tracks[trackIndex].artwork_url.replace("-large", "-t95x96"),
-              sizes: "96x96",
-              type: "image/jpeg",
-            },
-            {
-              src: tracks[trackIndex].artwork_url.replace(
-                "-large",
-                "-t128x128"
-              ),
-              sizes: "128x128",
-              type: "image/jpeg",
-            },
-            {
-              src: tracks[trackIndex].artwork_url.replace(
-                "-large",
-                "-t192x192"
-              ),
-              sizes: "192x192",
-              type: "image/jpeg",
-            },
-            {
-              src: tracks[trackIndex].artwork_url.replace(
-                "-large",
-                "-t256x256"
-              ),
-              sizes: "256x256",
-              type: "image/jpeg",
-            },
-            {
-              src: tracks[trackIndex].artwork_url.replace(
-                "-large",
-                "-t384x384"
-              ),
-              sizes: "384x384",
-              type: "image/jpeg",
-            },
-            {
-              src: tracks[trackIndex].artwork_url.replace(
-                "-large",
-                "-t512x512"
-              ),
-              sizes: "512x512",
-              type: "image/jpeg",
-            },
+              src: tracks[trackIndex].artwork_url.replace("-large", "-t200x200"),
+            }
           ],
         });
       }
