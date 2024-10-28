@@ -72,7 +72,7 @@ function Main() {
           artwork: [
             {
               src:tracks[trackIndex].artwork_url,
-              type:'image/jpg',
+              type:'image/jpeg',
             },
           ],
         });
