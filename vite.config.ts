@@ -13,6 +13,7 @@ export default defineConfig({
     VitePWA({
       manifest: {
         name: "ScFM",
+        short_name:"ScFM",
         description: "ScFM - it is app for listening music",
         theme_color: "#1f2937",
         background_color: "#1f2937",
@@ -43,7 +44,6 @@ export default defineConfig({
         ],
       },
       registerType: "autoUpdate",
-
       devOptions: {
         enabled: true,
       },
