@@ -61,10 +61,13 @@ function Main() {
   useEffect(() => {
     if (playList && trackIndex >= 0) {
       const tracks = playList.tracks;
-      console.log(tracks[trackIndex].artwork_url)
+       
       getTrack(tracks[trackIndex].id.toString());
       if ("mediaSession" in navigator && playList) {
         //experem api
+        const images = tracks[trackIndex].artwork_url
+
+console.log(images)
         navigator.mediaSession.metadata = new MediaMetadata({
           title: tracks[trackIndex].title.split("-")[1],
           artist: tracks[trackIndex].title.split("-")[0],
