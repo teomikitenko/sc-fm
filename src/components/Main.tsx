@@ -76,36 +76,10 @@ function Main() {
         navigator.mediaSession.metadata = new MediaMetadata({
           title: tracks[trackIndex].title.split("-")[1],
           artist: tracks[trackIndex].title.split("-")[0],
+          album: tracks[trackIndex].label_name,
           artwork: [
             {
               src: tracks[trackIndex].artwork_url,
-              sizes: "96x96",
-              type: "image/png",
-            },
-            {
-              src:tracks[trackIndex].artwork_url,
-              sizes: "128x128",
-              type: "image/png",
-            },
-            {
-              src:tracks[trackIndex].artwork_url,
-              sizes: "192x192",
-              type: "image/png",
-            },
-            {
-              src: tracks[trackIndex].artwork_url,
-              sizes: "256x256",
-              type: "image/png",
-            },
-            {
-              src: tracks[trackIndex].artwork_url,
-              sizes: "384x384",
-              type: "image/png",
-            },
-            {
-              src: tracks[trackIndex].artwork_url,
-              sizes: "512x512",
-              type: "image/png",
             },
           ],
         });
