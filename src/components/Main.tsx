@@ -67,7 +67,6 @@ function Main() {
         //experem api
         const images = tracks[trackIndex].artwork_url
 
-console.log(images)
         navigator.mediaSession.metadata = new MediaMetadata({
           title: tracks[trackIndex].title.split("-")[1],
           artist: tracks[trackIndex].title.split("-")[0],
@@ -76,7 +75,7 @@ console.log(images)
             {
               src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "96x96",
-              type: "image/jpeg",
+              type: "image/jpg",
             },
             {
               src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
@@ -86,25 +85,26 @@ console.log(images)
             {
               src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "192x192",
-              type: "image/jpeg",
+              type: "image/jpg",
             },
             {
               src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "256x256",
-              type: "image/jpeg",
+              type: "image/jpg",
             },
             {
               src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "384x384",
-              type: "image/jpeg",
+              type: "image/jpg",
             },
             {
               src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "512x512",
-              type: "image/jpeg",
+              type: "image/jpg",
             },
           ]
         });
+        console.log("Media session metadata set:", navigator.mediaSession.metadata);
       }
     }
   }, [playList, trackIndex]);
