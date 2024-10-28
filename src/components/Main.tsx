@@ -40,16 +40,6 @@ function Main() {
   };
   const handleTimeUpdate = () => {
     setCurrentTime(currentTime);
-    if (
-      "mediaSession" in navigator && //testing new api
-      navigator.mediaSession.setPositionState
-    ) {
-      navigator.mediaSession.setPositionState({
-        duration: audioRef.current.duration,
-        playbackRate: 1,
-        position: audioRef.current.currentTime,
-      });
-    }
   };
 
   useEffect(() => {
