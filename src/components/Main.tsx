@@ -46,6 +46,7 @@ function Main() {
     ) {
       navigator.mediaSession.setPositionState({
         duration: audioRef.current.duration,
+        playbackRate: 1,
         position: audioRef.current.currentTime,
       });
     }
