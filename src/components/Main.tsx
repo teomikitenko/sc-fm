@@ -61,6 +61,7 @@ function Main() {
   useEffect(() => {
     if (playList && trackIndex >= 0) {
       const tracks = playList.tracks;
+      console.log(tracks[trackIndex].artwork_url)
       getTrack(tracks[trackIndex].id.toString());
       if ("mediaSession" in navigator && playList) {
         //experem api
@@ -71,6 +72,7 @@ function Main() {
           artwork: [
             {
               src: tracks[trackIndex].artwork_url,
+              type:'image/jpg'
             },
           ],
         });
