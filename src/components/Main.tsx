@@ -39,7 +39,8 @@ function Main() {
     setTotalTime(totalTime);
   };
   const handleTimeUpdate = () => {
-    setCurrentTime(currentTime);
+    const updatedTime = formatTime(audioRef.current.duration);
+    setCurrentTime(updatedTime);
   };
 
   useEffect(() => {
