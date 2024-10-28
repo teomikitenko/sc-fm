@@ -70,9 +70,9 @@ function Main() {
           album: tracks[trackIndex].label_name,
           artwork: [
             {
-              src: tracks[trackIndex].artwork_url,
+              src: "https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-t200x200.jpg",
               type: "image/jpeg",
-              sizes:'512x512'
+              sizes:'200x200'
             },
           ],
         });
