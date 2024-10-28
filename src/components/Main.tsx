@@ -73,35 +73,9 @@ function Main() {
           album: tracks[trackIndex].label_name,
           artwork:  [
             {
-              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
-              sizes: "96x96",
-              type: "image/jpg",
-            },
-            {
-              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
-              sizes: "128x128",
-              type: "image/jpeg",
-            },
-            {
-              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
-              sizes: "192x192",
-              type: "image/jpg",
-            },
-            {
-              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
-              sizes: "256x256",
-              type: "image/jpg",
-            },
-            {
-              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
-              sizes: "384x384",
-              type: "image/jpg",
-            },
-            {
-              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
-              sizes: "512x512",
-              type: "image/jpg",
-            },
+              src: tracks[trackIndex].user.avatar_url,
+            
+            }
           ]
         });
         console.log("Media session metadata set:", navigator.mediaSession.metadata);
