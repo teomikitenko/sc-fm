@@ -74,32 +74,32 @@ console.log(images)
           album: tracks[trackIndex].label_name,
           artwork:  [
             {
-              src: tracks[trackIndex].artwork_url,
+              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "96x96",
               type: "image/jpeg",
             },
             {
-              src: tracks[trackIndex].artwork_url,
+              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "128x128",
               type: "image/jpeg",
             },
             {
-              src: tracks[trackIndex].artwork_url,
+              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "192x192",
               type: "image/jpeg",
             },
             {
-              src: tracks[trackIndex].artwork_url,
+              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "256x256",
               type: "image/jpeg",
             },
             {
-              src: tracks[trackIndex].artwork_url,
+              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "384x384",
               type: "image/jpeg",
             },
             {
-              src: tracks[trackIndex].artwork_url,
+              src: 'https://i1.sndcdn.com/artworks-vjSTwZLhlgbh0Rc7-nEdtqA-large.jpg',
               sizes: "512x512",
               type: "image/jpeg",
             },
