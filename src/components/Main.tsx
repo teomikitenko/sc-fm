@@ -61,24 +61,21 @@ function Main() {
   useEffect(() => {
     if (playList && trackIndex >= 0) {
       const tracks = playList.tracks;
-       
+
       getTrack(tracks[trackIndex].id.toString());
       if ("mediaSession" in navigator && playList) {
         //experem api
-        const images = tracks[trackIndex].artwork_url
 
         navigator.mediaSession.metadata = new MediaMetadata({
           title: tracks[trackIndex].title.split("-")[1],
           artist: tracks[trackIndex].title.split("-")[0],
           album: tracks[trackIndex].label_name,
-          artwork:  [
+          artwork: [
             {
-              src: tracks[trackIndex].user.avatar_url,
-            
-            }
-          ]
+              src: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8403d9fc993b2118944770e1ba",
+            },
+          ],
         });
-        console.log("Media session metadata set:", navigator.mediaSession.metadata);
       }
     }
   }, [playList, trackIndex]);
