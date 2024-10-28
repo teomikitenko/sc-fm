@@ -69,13 +69,38 @@ function Main() {
           title: tracks[trackIndex].title.split("-")[1],
           artist: tracks[trackIndex].title.split("-")[0],
           album: tracks[trackIndex].label_name,
-          artwork: [
+          artwork:  [
             {
-              src: "https://img.freepik.com/free-photo/photorealistic-rainbow-with-countryside-nature-landscape_23-2151597638.jpg" /* tracks[trackIndex].artwork_url */,
-              sizes: "512x512",
-              type:'image/jpeg'
+              src: tracks[trackIndex].artwork_url,
+              sizes: "96x96",
+              type: "image/jpeg",
             },
-          ],
+            {
+              src: tracks[trackIndex].artwork_url,
+              sizes: "128x128",
+              type: "image/jpeg",
+            },
+            {
+              src: tracks[trackIndex].artwork_url,
+              sizes: "192x192",
+              type: "image/jpeg",
+            },
+            {
+              src: tracks[trackIndex].artwork_url,
+              sizes: "256x256",
+              type: "image/jpeg",
+            },
+            {
+              src: tracks[trackIndex].artwork_url,
+              sizes: "384x384",
+              type: "image/jpeg",
+            },
+            {
+              src: tracks[trackIndex].artwork_url,
+              sizes: "512x512",
+              type: "image/jpeg",
+            },
+          ]
         });
       }
     }
