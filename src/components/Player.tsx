@@ -19,7 +19,7 @@ const Player = ({
   const [paused, setPaused] = useState(false);
   const pauseHandler = () => {
     audioRef.current.pause();
-    //setPaused(true);
+    setPaused(true);
   };
 
 
@@ -30,7 +30,7 @@ const Player = ({
 
   const playHandler = () => {
     audioRef.current.play();
-   // setPaused(false);
+    setPaused(false);
   };
   const shuffleHandler = () => {
     const index = Math.floor(Math.random() * playlistLength);
