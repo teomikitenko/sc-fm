@@ -45,7 +45,15 @@ function Main() {
       });
       audioRef.current.addEventListener("timeupdate", () => {
         const currentTime = formatTime(audioRef.current.currentTime);
-
+        if (
+          "mediaSession" in navigator &&
+          navigator.mediaSession.setPositionState
+        ) {
+          navigator.mediaSession.setPositionState({
+            duration: audioRef.current.duration,
+            position:audioRef.current.currentTime
+          });
+        }
         setCurrentTime(currentTime);
       });
     }
@@ -55,9 +63,11 @@ function Main() {
     if (playList && trackIndex >= 0) {
       const tracks = playList.tracks;
       getTrack(tracks[trackIndex].id.toString());
-      if ("mediaSession" in navigator && playList) {    //experem api
+      if ("mediaSession" in navigator && playList) {
+        //experem api
         navigator.mediaSession.metadata = new MediaMetadata({
-          title: tracks[trackIndex].title,
+          title: tracks[trackIndex].title.split("-")[0],
+          artist: tracks[trackIndex].title.split("-")[1],
         });
       }
     }
