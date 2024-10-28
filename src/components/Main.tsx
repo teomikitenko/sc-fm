@@ -64,20 +64,20 @@ function Main() {
 
       getTrack(tracks[trackIndex].id.toString());
       if ("mediaSession" in navigator && playList) {
-   
         navigator.mediaSession.metadata = new MediaMetadata({
           title: tracks[trackIndex].title.split("-")[1],
           artist: tracks[trackIndex].title.split("-")[0],
           album: tracks[trackIndex].label_name,
           artwork: [
             {
-              src:tracks[trackIndex].artwork_url,
-              type:'image/jpeg',
+              src: tracks[trackIndex].artwork_url,
+              type: "image/jpeg",
+              sizes:'512x512'
             },
           ],
         });
       }
-      console.log(navigator.mediaSession.metadata)
+      console.log(navigator.mediaSession.metadata);
     }
   }, [playList, trackIndex]);
 
