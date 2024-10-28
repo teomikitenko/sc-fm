@@ -10,7 +10,7 @@ export default defineConfig({
       manifest: {
         name: "ScFM",
         description: "ScFM - it is app for listening music",
-        theme_color: "#ffffff",
+        theme_color: "#1f2937",
         icons: [
           {
             src: "pwa-64x64.png",
@@ -35,6 +35,7 @@ export default defineConfig({
           },
         ],
       },
+      selfDestroying:true,
       registerType: "autoUpdate",
       devOptions: {
         enabled: true,
