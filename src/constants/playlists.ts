@@ -4,6 +4,7 @@ const PLAYLISTS = [
   { id: "1636238851", title: "Sleepy Vibes" },
   { id: "1271948866", title: "Work/Study" },
   { id: "223448541", title: "Future Bass" },
+  { id: "1891455914", title: "NCS Best of 2024" },
 
   { id: "1619418586", title: "Melodic Dubstep" },
   { id: "1716812874", title: "Dubstep" },
