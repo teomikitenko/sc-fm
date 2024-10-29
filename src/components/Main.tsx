@@ -70,8 +70,21 @@ function Main() {
           album: tracks[trackIndex].label_name,
           artwork: [
             {
+              src: tracks[trackIndex].artwork_url.replace("-large", "-t100x100"),
+              sizes:'96x96'
+            },
+            {
               src: tracks[trackIndex].artwork_url.replace("-large", "-t200x200"),
-            }
+              sizes:'128x128'
+            },
+            {
+              src: tracks[trackIndex].artwork_url.replace("-large", "-t300x300"),
+              sizes:'384x384'
+            },
+            {
+              src: tracks[trackIndex].artwork_url.replace("-large", "-t500x500"),
+              sizes:'512x512'
+            },
           ],
         });
       }
