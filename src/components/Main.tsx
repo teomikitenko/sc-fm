@@ -13,9 +13,7 @@ function Main() {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const serverUrl = import.meta.env.DEV
-    ? "http://localhost:3000"
-    : "https://sc-server-seven.vercel.app";
+  const serverUrl = import.meta.env.VITE_SC_URL
   useVisualAudio(audioRef.current, canvasRef.current);
 
   const getTrack = async (track_id: string) => {
