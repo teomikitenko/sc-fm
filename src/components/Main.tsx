@@ -1,10 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
-import type { TrackList, StreamUrls } from '../../types/types'
+import { useEffect, useRef, useState } from 'react'
+
+import type { StreamUrls, TrackList } from '../../types/types'
 import { PLAYLISTS } from '../constants/playlists'
-import useVisualAudio from '../hooks/useVisualAudio'
-import useSetupMetadata from '../hooks/useSetupMetadata'
-import Player from './Player'
 import useAudioUpdate from '../hooks/useAudioUpdate'
+import useSetupMetadata from '../hooks/useSetupMetadata'
+import useVisualAudio from '../hooks/useVisualAudio'
+import Player from './Player'
 
 function Main() {
     const [playList, setPlaylist] = useState<TrackList | undefined>(undefined)

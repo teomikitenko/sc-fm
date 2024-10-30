@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import { Shuffle } from 'lucide-react'
 import { Pause } from 'lucide-react'
 import { Play } from 'lucide-react'
+import { useState } from 'react'
 
 const Player = ({
     audioRef,

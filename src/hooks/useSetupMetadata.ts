@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 import type { TrackList } from '../../types/types'
 
 const useSetupMetadata = (playList: TrackList, trackIndex: number) => {
