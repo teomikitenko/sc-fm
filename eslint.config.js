@@ -25,6 +25,7 @@ export default tseslint.config(
         rules: {
             ...reactHooks.configs.recommended.rules,
             ...prettierConfig.rules,
+            "@typescript-eslint/ban-ts-comment": "warn",
             'simple-import-sort/imports': 'error',
             'simple-import-sort/exports': 'error',
             'no-unused-vars': 'warn',
