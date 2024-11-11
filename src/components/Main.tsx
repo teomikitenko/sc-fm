@@ -13,6 +13,8 @@ function Main() {
     const [currentUrl, setCurrentUrl] = useState<StreamUrls | undefined>()
     const [currentTime, setCurrentTime] = useState('00:00')
     const [totalTime, setTotalTime] = useState('00:00')
+    const [installEvent, setInstalEvent] = useState<Event>()
+    const [choice, setChoice] = useState(false)
 
     const audioRef = useRef<HTMLAudioElement | null>(null)
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -42,6 +44,28 @@ function Main() {
     }
 
     useEffect(() => {
+        const getEvent = (e: Event) => {
+            e.preventDefault()
+            setInstalEvent(e)
+        }
+        window.addEventListener('beforeinstallprompt', getEvent)
+        return () => removeEventListener('beforeinstallprompt', getEvent)
+    }, [])
+
+    const installApp = () => {
+        //@ts-expect-error
+        installEvent.prompt()
+        //@ts-expect-error
+        installEvent.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                setChoice(true)
+            } else {
+                setChoice(false)
+            }
+        })
+    }
+
+    useEffect(() => {
         if (playList && trackIndex >= 0) {
             const tracks = playList.tracks
             getTrack(tracks[trackIndex].id.toString())
@@ -49,7 +73,21 @@ function Main() {
     }, [playList, trackIndex])
     return (
         <div className="min-w-[300px]:min-w-[300px] flex min-h-screen flex-col bg-foreground">
-            <div className="relative z-30 flex-auto px-6 pb-6 pt-14">
+            <div className="relative gap-3 sm:gap-4 flex flex-col z-30 flex-auto px-6 pb-6 pt-14">
+                <div className="w-full"></div>
+                {!choice && (
+                    <div className="flex w-full justify-end">
+                        <button
+                            className="rounded-lg bg-secondary px-2 py-1"
+                            onClick={installApp}
+                        >
+                            <p className="font-semibold text-foreground hover:text-primary">
+                                Install
+                            </p>
+                        </button>
+                    </div>
+                )}
+
                 <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:grid-rows-3 sm:gap-5">
                     {PLAYLISTS.map((p) => (
                         <li key={p.id}>
