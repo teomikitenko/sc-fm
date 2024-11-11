@@ -13,7 +13,7 @@ function Main() {
     const [currentUrl, setCurrentUrl] = useState<StreamUrls | undefined>()
     const [currentTime, setCurrentTime] = useState('00:00')
     const [totalTime, setTotalTime] = useState('00:00')
-    const [installEvent, setInstalEvent] = useState<Event>()
+   // const [installEvent, setInstalEvent] = useState<Event>()
     const [choice, setChoice] = useState(false)
 
     const audioRef = useRef<HTMLAudioElement | null>(null)
@@ -43,14 +43,14 @@ function Main() {
         setPlaylist(playList)
     }
 
-    useEffect(() => {
+ /*    useEffect(() => {
         const getEvent = (e: Event) => {
             e.preventDefault()
             setInstalEvent(e)
         }
         window.addEventListener('beforeinstallprompt', getEvent)
         return () => removeEventListener('beforeinstallprompt', getEvent)
-    }, [])
+    }, []) */
 
     const installApp = () => {
         //@ts-expect-error
