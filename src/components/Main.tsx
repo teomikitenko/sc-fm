@@ -73,7 +73,7 @@ function Main() {
     }, [playList, trackIndex])
     return (
         <div className="min-w-[300px]:min-w-[300px] flex min-h-screen flex-col bg-foreground">
-            <div className="relative z-30 flex-auto px-6 pb-6 pt-14">
+            <div className="relative gap-3 sm:gap-4 flex flex-col z-30 flex-auto px-6 pb-6 pt-14">
                 <div className="w-full"></div>
                 {!choice && (
                     <div className="flex w-full justify-end">
