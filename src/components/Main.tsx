@@ -13,8 +13,8 @@ function Main() {
     const [currentUrl, setCurrentUrl] = useState<StreamUrls | undefined>()
     const [currentTime, setCurrentTime] = useState('00:00')
     const [totalTime, setTotalTime] = useState('00:00')
-    const [installEvent, setInstalEvent] = useState<Event>()
-    const [choice, setChoice] = useState(false)
+/*     const [installEvent, setInstalEvent] = useState<Event>()
+    const [choice, setChoice] = useState(false) */
 
     const audioRef = useRef<HTMLAudioElement | null>(null)
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -43,7 +43,7 @@ function Main() {
         setPlaylist(playList)
     }
 
-    useEffect(() => {
+/*     useEffect(() => {
         const getEvent = (e: Event) => {
             e.preventDefault()
             setInstalEvent(e)
@@ -63,7 +63,7 @@ function Main() {
                 setChoice(false)
             }
         })
-    }
+    } */
 
     useEffect(() => {
         if (playList && trackIndex >= 0) {
