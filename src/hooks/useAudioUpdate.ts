@@ -35,6 +35,7 @@ const useAudioUpdate = (
 
     useEffect(() => {
         if (currentUrl && audioRef) {
+            console.log('play')
             audioRef.current!.play()
             audioRef.current.volume = 0.5
             audioRef.current.addEventListener('ended', handleEndTrack)

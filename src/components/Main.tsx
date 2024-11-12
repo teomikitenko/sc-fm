@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+import { useVisualization } from 'use-visualization'
 
 import type { StreamUrls, TrackList } from '../../types/types'
 import { PLAYLISTS } from '../constants/playlists'
 import useAudioUpdate from '../hooks/useAudioUpdate'
 import useSetupMetadata from '../hooks/useSetupMetadata'
-import useVisualAudio from '../hooks/useVisualAudio'
 import Player from './Player'
 
 function Main() {
@@ -13,13 +13,16 @@ function Main() {
     const [currentUrl, setCurrentUrl] = useState<StreamUrls | undefined>()
     const [currentTime, setCurrentTime] = useState('00:00')
     const [totalTime, setTotalTime] = useState('00:00')
-/*     const [installEvent, setInstalEvent] = useState<Event>()
-    const [choice, setChoice] = useState(false) */
+    const [installEvent, setInstalEvent] = useState<Event>()
+    const [choice, setChoice] = useState(false)
 
     const audioRef = useRef<HTMLAudioElement | null>(null)
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
     const serverUrl = import.meta.env.VITE_SC_URL
-    useVisualAudio(audioRef.current, canvasRef.current)
+    const { onPlay, onPause } = useVisualization(
+        audioRef.current,
+        canvasRef.current
+    )
     useSetupMetadata(playList, trackIndex)
     useAudioUpdate(
         audioRef,
@@ -43,13 +46,21 @@ function Main() {
         setPlaylist(playList)
     }
 
-/*     useEffect(() => {
+    useEffect(() => {
         const getEvent = (e: Event) => {
             e.preventDefault()
             setInstalEvent(e)
         }
         window.addEventListener('beforeinstallprompt', getEvent)
-        return () => removeEventListener('beforeinstallprompt', getEvent)
+        if ('getInstalledRelatedApps' in window.navigator) {
+            //@ts-expect-error
+            navigator.getInstalledRelatedApps().then(res=>console.log(res))
+      
+          }
+        
+        return () => {
+            window.removeEventListener('beforeinstallprompt', getEvent)
+        }
     }, [])
 
     const installApp = () => {
@@ -63,7 +74,7 @@ function Main() {
                 setChoice(false)
             }
         })
-    } */
+    }
 
     useEffect(() => {
         if (playList && trackIndex >= 0) {
@@ -73,8 +84,8 @@ function Main() {
     }, [playList, trackIndex])
     return (
         <div className="min-w-[300px]:min-w-[300px] flex min-h-screen flex-col bg-foreground">
-            <div className="relative gap-3 sm:gap-4 flex flex-col z-30 flex-auto px-6 pb-6 pt-14">
-               {/*  {!choice && (
+            <div className="relative z-30 flex flex-auto flex-col gap-3 px-6 pb-6 pt-14 sm:gap-4">
+                {!choice && (
                     <div className="flex w-full justify-end">
                         <button
                             className="rounded-lg bg-secondary px-2 py-1"
@@ -85,7 +96,7 @@ function Main() {
                             </p>
                         </button>
                     </div>
-                )} */}
+                )}
 
                 <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:grid-rows-3 sm:gap-5">
                     {PLAYLISTS.map((p) => (
@@ -106,6 +117,8 @@ function Main() {
                 </ul>
 
                 <audio
+                    onPlay={onPlay}
+                    onPause={onPause}
                     ref={audioRef}
                     crossOrigin="anonymous"
                     src={currentUrl?.http_mp3_128_url}

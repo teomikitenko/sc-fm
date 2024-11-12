@@ -19,6 +19,7 @@
         "lucide-react": "^0.453.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
+        "use-visualization": "^1.2.2",
         "vite-plugin-dynamic-import": "^1.6.0"
     },
     "devDependencies": {

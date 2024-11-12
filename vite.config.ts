@@ -16,6 +16,10 @@ export default defineConfig({
                 theme_color: '#1f2937',
                 background_color: '#1f2937',
                 display: 'standalone',
+                related_applications: [{
+                    "platform": "play",
+                    "url": "https://app.example.com/manifest.json"
+                  }],
                 icons: [
                     {
                         src: 'pwa-64x64.png',
